@@ -1,29 +1,28 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 48 25% 95%; /* Light tan background */
-    --foreground: 20 10% 15%; /* Dark brown text */
+    --background: 48 100% 50%;
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 20 10% 15%;
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 20 10% 15%;
-    --primary: 28 40% 20%; /* Rich Rottweiler brown */
-    --primary-foreground: 30 25% 95%;
-    --secondary: 25 70% 35%; /* Mahogany/tan color */
-    --secondary-foreground: 30 25% 95%;
-    --muted: 20 10% 90%;
-    --muted-foreground: 20 10% 40%;
-    --accent: 15 60% 25%; /* Darker rust brown */
-    --accent-foreground: 30 25% 95%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 65.7% 74.5%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 48 96% 89%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 20 10% 85%;
-    --input: 20 10% 85%;
-    --ring: 28 40% 20%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 65.7% 74.5%;
     --radius: 1rem;
   }
 }
@@ -32,6 +31,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -41,6 +41,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -51,9 +52,12 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -64,10 +68,7 @@
 }
 
 .bone-button {
-  @apply relative px-8 py-3 text-lg font-bold text-white transition-all duration-300
-         before:absolute before:inset-0 before:rounded-full before:bg-secondary
-         before:transform before:transition-transform before:duration-300
-         hover:before:scale-105 hover:scale-105;
+  @apply relative px-8 py-3 text-lg font-bold text-black transition-all duration-300 before:absolute before:inset-0 before:rounded-full before:bg-[#f4d03f] before:transform before:transition-transform before:duration-300 hover:before:scale-105 hover:scale-105;
 }
 
 .bone-button span {
