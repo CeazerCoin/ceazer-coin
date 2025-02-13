@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Twitter, Telegram, Discord, Globe } from "lucide-react";
+import { Twitter, MessageCircle, MessageSquare, Globe } from "lucide-react";
 
 const Navigation = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
@@ -281,8 +281,8 @@ const SocialLinks = () => (
       <div className="flex flex-wrap justify-center gap-8">
         {[
           { icon: <Twitter className="w-6 h-6" />, label: "Twitter" },
-          { icon: <Telegram className="w-6 h-6" />, label: "Telegram" },
-          { icon: <Discord className="w-6 h-6" />, label: "Discord" },
+          { icon: <MessageCircle className="w-6 h-6" />, label: "Telegram" },
+          { icon: <MessageSquare className="w-6 h-6" />, label: "Discord" },
           { icon: <Globe className="w-6 h-6" />, label: "Website" }
         ].map((social, i) => (
           <motion.a
