@@ -26,8 +26,10 @@ const Navigation = () => (
 );
 
 const Hero = () => (
-  <div className="min-h-screen pt-24 pb-12 px-6">
-    <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+  <div className="min-h-screen pt-24 pb-12 px-6 relative overflow-hidden">
+    <div className="absolute top-20 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
+    <div className="absolute bottom-20 left-0 w-96 h-96 bg-secondary/30 rounded-full blur-3xl" />
+    <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -79,8 +81,10 @@ const MarqueeText = () => (
 );
 
 const Features = () => (
-  <section className="py-24 px-6 bg-white">
-    <div className="max-w-7xl mx-auto">
+  <section className="py-24 px-6 bg-white relative overflow-hidden">
+    <div className="absolute top-0 right-0 w-72 h-72 bg-secondary/30 rounded-full blur-3xl" />
+    <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+    <div className="max-w-7xl mx-auto relative">
       <h2 className="text-4xl font-bold text-center mb-16">Why Choose Us?</h2>
       <div className="grid md:grid-cols-3 gap-8">
         {[
@@ -182,8 +186,10 @@ const History = () => (
 );
 
 const Community = () => (
-  <section className="py-24 px-6 bg-primary/10">
-    <div className="max-w-7xl mx-auto">
+  <section className="py-24 px-6 bg-primary/10 relative overflow-hidden">
+    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+    <div className="absolute bottom-0 left-0 w-72 h-72 bg-secondary/30 rounded-full blur-3xl" />
+    <div className="max-w-7xl mx-auto relative">
       <h2 className="text-4xl font-bold text-center mb-16">Join Our Community</h2>
       <div className="grid md:grid-cols-2 gap-12">
         <motion.div
@@ -233,8 +239,9 @@ const Community = () => (
 );
 
 const About = () => (
-  <section className="py-24 px-6 bg-white">
-    <div className="max-w-7xl mx-auto">
+  <section className="py-24 px-6 bg-white relative overflow-hidden">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/20 rounded-full blur-3xl" />
+    <div className="max-w-7xl mx-auto relative">
       <h2 className="text-4xl font-bold text-center mb-16">About Us</h2>
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div
