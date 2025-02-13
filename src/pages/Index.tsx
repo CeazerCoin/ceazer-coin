@@ -258,24 +258,50 @@ const About = () => (
             Our team consists of passionate developers, marketers, and community managers who work 
             tirelessly to ensure the success and longevity of the project.
           </p>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { label: "Team Members", value: "20+" },
+              { label: "Countries", value: "15+" },
+              { label: "Community Projects", value: "50+" },
+              { label: "Partners", value: "10+" }
+            ].map((stat, i) => (
+              <div key={i} className="bg-secondary/50 p-6 rounded-2xl text-center">
+                <p className="text-3xl font-bold mb-2">{stat.value}</p>
+                <p className="text-gray-600">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-2 gap-4"
+          className="relative h-[600px]"
         >
-          {[
-            { label: "Team Members", value: "20+" },
-            { label: "Countries", value: "15+" },
-            { label: "Community Projects", value: "50+" },
-            { label: "Partners", value: "10+" }
-          ].map((stat, i) => (
-            <div key={i} className="bg-secondary/50 p-6 rounded-2xl text-center">
-              <p className="text-3xl font-bold mb-2">{stat.value}</p>
-              <p className="text-gray-600">{stat.label}</p>
-            </div>
-          ))}
+          <motion.img
+            src="/lovable-uploads/2d1d6034-65ee-4644-a00f-6cbfa63dc5f5.png"
+            alt="About Image 1"
+            className="absolute w-64 h-64 object-cover rounded-2xl shadow-xl transform -rotate-12 top-0 left-0 z-20"
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+          <motion.img
+            src="/lovable-uploads/2d1d6034-65ee-4644-a00f-6cbfa63dc5f5.png"
+            alt="About Image 2"
+            className="absolute w-72 h-72 object-cover rounded-2xl shadow-xl transform rotate-6 top-32 right-0 z-10"
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          />
+          <motion.img
+            src="/lovable-uploads/2d1d6034-65ee-4644-a00f-6cbfa63dc5f5.png"
+            alt="About Image 3"
+            className="absolute w-56 h-56 object-cover rounded-2xl shadow-xl transform rotate-[-6deg] bottom-0 left-20 z-30"
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          />
         </motion.div>
       </div>
     </div>
@@ -309,6 +335,131 @@ const SocialLinks = () => (
   </section>
 );
 
+const Footer = () => (
+  <footer className="bg-[#1A1F2C] text-white relative overflow-hidden">
+    <div className="absolute top-0 left-0 right-0 h-24 bg-primary/10 overflow-hidden">
+      <motion.div 
+        className="flex items-center gap-8 px-6 py-4"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+      >
+        {Array(10).fill("🦮 WOOF TO THE MOON 🚀 GOOD BOY COIN 🦴 BARK BARK 💪").map((text, i) => (
+          <span key={i} className="text-xl font-bold whitespace-nowrap">
+            {text}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+
+    <div className="max-w-7xl mx-auto px-6 pt-32 pb-8">
+      <div className="grid md:grid-cols-4 gap-12 mb-16">
+        <div className="space-y-6">
+          <motion.div
+            className="flex items-center gap-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center overflow-hidden">
+              <span className="text-3xl">🐕</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold">RottoCoin</h3>
+              <p className="text-primary">Much Strong! 💪</p>
+            </div>
+          </motion.div>
+          <p className="text-gray-400">
+            The goodest boy in the crypto world! 🦮 Powered by treats and belly rubs!
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+            <span>Quick Links</span> 
+            <span className="text-2xl">🔗</span>
+          </h3>
+          <ul className="space-y-4">
+            {[
+              { text: 'Home', emoji: '🏠' },
+              { text: 'About', emoji: '📚' },
+              { text: 'Tokenomics', emoji: '📈' },
+              { text: 'Roadmap', emoji: '🗺️' }
+            ].map((item) => (
+              <li key={item.text}>
+                <Link 
+                  to="/" 
+                  className="text-gray-400 hover:text-white flex items-center gap-2 group"
+                >
+                  <span>{item.emoji}</span>
+                  {item.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+            <span>Join the Pack</span>
+            <span className="text-2xl">🐾</span>
+          </h3>
+          <div className="space-y-4">
+            <motion.a
+              href="#"
+              className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3">
+                <Twitter className="w-5 h-5" />
+                <span>Follow us</span>
+              </div>
+            </motion.a>
+            <motion.a
+              href="#"
+              className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3">
+                <MessageCircle className="w-5 h-5" />
+                <span>Join Telegram</span>
+              </div>
+            </motion.a>
+            <motion.a
+              href="#"
+              className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center gap-3">
+                <MessageSquare className="w-5 h-5" />
+                <span>Join Discord</span>
+              </div>
+            </motion.a>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+            <span>Treat Store</span>
+            <span className="text-2xl">🦴</span>
+          </h3>
+          <motion.div
+            className="p-6 bg-primary/10 rounded-xl text-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-4xl mb-4">🐕</div>
+            <p className="font-bold mb-2">Become a Pack Member</p>
+            <p className="text-sm text-gray-400">Get exclusive treats and updates!</p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="text-center pt-8 border-t border-white/10">
+        <p className="text-gray-400">
+          © 2024 RottoCoin 🦮 The Goodest Memecoin Ever! All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+);
+
 const Index = () => {
   return (
     <div className="min-h-screen">
@@ -321,6 +472,7 @@ const Index = () => {
       <History />
       <Community />
       <SocialLinks />
+      <Footer />
     </div>
   );
 };
