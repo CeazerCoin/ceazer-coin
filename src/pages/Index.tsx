@@ -66,6 +66,7 @@ const Navigation = () => {
 const Hero = () => (
   <div id="home" className="pt-24 pb-12 mt-10 sm:mt-20 sm:m-20 px-6 relative overflow-hidden">
 
+
     <div className="max-w-7xl mx-1 sm:mx-auto grid md:grid-cols-2 gap-12 items-center relative">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
