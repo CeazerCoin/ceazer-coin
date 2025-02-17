@@ -4,33 +4,69 @@ import { Twitter, MessageCircle, MessageSquare, Globe } from "lucide-react";
 import { useState } from "react";
 import { Clipboard, ClipboardCheck } from "lucide-react";
 
-const Navigation = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
-    <div className="max-w-7xl mx-auto bg-[#96430f] backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className="w-14 h-14 pl-[4.5rem] rounded-full flex items-center justify-center">
-          <span className="text-[#AE673B] flex flex-row text-2xl font-bold"><img className="w-14 h-14" src="/lovable-uploads/logo.png" /> <span className="text-white text-4xl ml-1 mt-[0.50rem]">Ceazer</span></span>
+
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+      <div className="max-w-7xl mx-auto bg-[#96430f] backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-14 h-14  sm:pl-[4.5rem] rounded-full flex items-center justify-center">
+            <span className="text-[#AE673B] flex flex-row text-2xl font-bold">
+              <img className="w-14 h-14" src="/lovable-uploads/ceazer_logo.png" alt="Logo" />
+              <span className=" text-white text-lg sm:text-4xl ml-1 mt-4 sm:mt-[0.50rem]">Ceazer</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Desktop and larger screens */}
+        <div className="hidden md:flex items-center gap-8 text-white">
+          <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+          <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
+          <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
+        </div>
+
+        {/* Get Started Button */}
+        <a className="hidden sm:flex" href="#community">
+          <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
+            Get Started
+          </button>
+        </a>
+
+        {/* Hamburger Icon for Mobile */}
+        <div className="md:hidden flex items-center" onClick={() => setIsOpen(!isOpen)}>
+          <button className="text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
       </div>
-      <div className="hidden md:flex items-center gap-8 text-white">
-        <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
-        <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
-        <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
-      </div>
-      <a href="#community">
-        <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
-          Get Started
-        </button>
-      </a>
-    </div>
 
-  </nav>
-);
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-[#96430f] backdrop-blur-sm rounded-md  px-6 py-3 flex flex-col items-center gap-4 text-white">
+          <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+          <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
+          <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
+          <a href="#community">
+            <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
+              Get Started
+            </button>
+          </a>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+
 
 const Hero = () => (
-  <div id="home" className="pt-24 pb-12 m-20 px-6 relative overflow-hidden">
+  <div id="home" className="pt-24 pb-12 mt-10 sm:mt-20 sm:m-20 px-6 relative overflow-hidden">
 
-    <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
+    <div className="max-w-7xl mx-1 sm:mx-auto grid md:grid-cols-2 gap-12 items-center relative">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -39,7 +75,7 @@ const Hero = () => (
         <h1 className="text-6xl md:text-7xl font-spicy font-black text-black mb-6 leading-tight flex flex-wrap items-center">
           <span>Stake, Govern</span> <br />
           <span className="flex items-center gap-2">
-            and Earn <img src="/lovable-uploads/logo.png" className="w-16 h-16 inline-block" />
+            and Earn <img src="/lovable-uploads/ceazer_logo.png" className="w-16 h-16 inline-block" />
           </span>
         </h1>
 
@@ -100,17 +136,17 @@ const Tokenomics = () => {
   return (
     <section id="tokenomics" className="py-24 px-6 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-spicy font-bold text-center mb-16">Tokenomics</h2>
+        <h2 className="text-4xl flex flex-wrap font-spicy font-bold text-center mb-16">Tokenomics</h2>
 
         {/* Token Mint Address Section with Copy Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white justify-center mb-4 flex flex-row gap-10 p-6 rounded-2xl text-center items-center"
+          className="bg-white  justify-center mb-4 flex flex-col sm:flex-row gap-10 p-6 rounded-2xl text-center items-center"
         >
-          <p className="text-lg font-spicy font-bold">Token Mint Address</p>
-          <p className="text-lg  rounded-lg">{tokenAddress}</p>
+          <p className="text-lg text-wrap sm:text-nowrap font-spicy font-bold">Token Mint Address</p>
+          <p className="text-lg w-full break-all rounded-lg">{tokenAddress}</p>
           <button
             onClick={handleCopy}
             className="p-2 bg-[#F39C01] rounded-lg hover:bg-[#e38119] transition"
@@ -356,7 +392,7 @@ const Footer = () => (
             whileHover={{ scale: 1.05 }}
           >
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center overflow-hidden">
-              <span className="text-3xl w-[4rem] h-[4rem]"><img src="/lovable-uploads/logo.png" /></span>
+              <span className="text-3xl w-[4rem] h-[4rem] items-center"><img className="mt-1" src="/lovable-uploads/ceazer_logo.png" /></span>
             </div>
             <div>
               <h3 className="text-xl font-spicy font-bold">Ceazer Coin</h3>
