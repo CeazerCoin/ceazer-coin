@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Twitter, MessageCircle, MessageSquare, Globe } from "lucide-react";
 import { useState } from "react";
 import { Clipboard, ClipboardCheck } from "lucide-react";
+import ScrollableCoinData from "@/components/ScrollDexPrices";
 
 
 const Navigation = () => {
@@ -21,21 +22,21 @@ const Navigation = () => {
         </div>
 
         {/* Desktop and larger screens */}
-        <div className="hidden md:flex items-center gap-8 text-white">
+        <div className="hidden lg:flex items-center gap-8 text-white">
           <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
           <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
           <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
         </div>
 
         {/* Get Started Button */}
-        <a className="hidden sm:flex" href="#community">
+        <a className="hidden lg:flex" href="#community">
           <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
             Get Started
           </button>
         </a>
 
         {/* Hamburger Icon for Mobile */}
-        <div className="md:hidden flex items-center" onClick={() => setIsOpen(!isOpen)}>
+        <div className="lg:hidden flex items-center" onClick={() => setIsOpen(!isOpen)}>
           <button className="text-white">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -46,7 +47,7 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#96430f] backdrop-blur-sm rounded-md  px-6 py-3 flex flex-col items-center gap-4 text-white">
+        <div className="md:hidden bg-[#96430f] z-999 backdrop-blur-sm rounded-md  px-6 py-3 flex flex-col items-center gap-4 text-white">
           <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
           <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
           <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
@@ -57,6 +58,20 @@ const Navigation = () => {
           </a>
         </div>
       )}
+      {isOpen && (
+        <div className="lg:hidden absolute top-16 left-[32rem] w-full bg-[#96430f] backdrop-blur-sm rounded-md px-6 py-3 flex flex-col items-center gap-4 text-white 
+    md:w-[250px] md:right-4 md:top-20 md:rounded-lg md:p-4">
+          <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+          <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
+          <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
+          <a href="#community">
+            <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
+              Get Started
+            </button>
+          </a>
+        </div>
+      )}
+
     </nav>
   );
 };
@@ -73,11 +88,8 @@ const Hero = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-6xl md:text-7xl font-spicy font-black text-black mb-6 leading-tight flex flex-wrap items-center">
-          <span>Stake, Govern</span> <br />
-          <span className="flex items-center gap-2">
-            and Earn <img src="/lovable-uploads/ceazer_logo.png" className="w-16 h-16 inline-block" />
-          </span>
+        <h1 className="text-5xl lg:text-7xl font-spicy font-black text-black mb-6 leading-tight flex flex-wrap items-center">
+          <span>Stake, Govern and Earn <img src="/lovable-uploads/ceazer_logo.png" className="w-16 h-16 mr-20 inline-block" /></span>
         </h1>
 
         <p className="text-lg text-gray-700 mb-8 max-w-lg">
@@ -108,15 +120,7 @@ const Hero = () => (
 
 const MarqueeText = () => (
   <div className="bg-[#96430f] py-4 overflow-hidden whitespace-nowrap">
-    <div className="animate-marquee inline-block">
-      <div className="flex items-center gap-4">
-        {Array(2).fill("🚀 To the Moon & Beyond | 🏆 The Meme King of Crypto | 🌍 Community-Powered | 🐕 Forget Dogs, It's Time for Empire | 🔥 0% Rug, 100% Fun!").map((text, i) => (
-          <span key={i} className="text-xl font-spicy text-white font-bold flex items-center gap-2">
-            {text}
-          </span>
-        ))}
-      </div>
-    </div>
+    <ScrollableCoinData/>
   </div>
 );
 
@@ -144,7 +148,7 @@ const Tokenomics = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white  justify-center mb-4 flex flex-col sm:flex-row gap-10 p-6 rounded-2xl text-center items-center"
+          className="bg-white  justify-center mb-10 flex flex-col sm:flex-row gap-10 p-6 rounded-2xl text-center items-center"
         >
           <p className="text-lg text-wrap sm:text-nowrap font-spicy font-bold">Token Mint Address</p>
           <p className="text-lg w-full break-all rounded-lg">{tokenAddress}</p>
@@ -172,22 +176,22 @@ const Tokenomics = () => {
               className="bg-white p-6 rounded-2xl text-center"
             >
               <p className="text-gray-600 font-spicy mb-2">{item.label}</p>
-              <p className="text-3xl font-bold">{item.value}</p>
+              <p className="sm:text-xl lg:text-3xl break-all font-bold">{item.value}</p>
             </motion.div>
           ))}
-          
+
 
         </div>
         <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden sm:flex my-0 pt-20 animate-float"
-            >
-              <img src={`/lovable-uploads/staking.png`} alt="Cute Corgi"  />
-            </motion.div>
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="hidden sm:flex my-0 pt-20 animate-float"
+        >
+          <img src={`/lovable-uploads/staking.png`} alt="Cute Corgi" />
+        </motion.div>
       </div>
-      
+
     </section>
   );
 };
@@ -313,8 +317,8 @@ const About = () => (
               { label: "Memes Minted", value: "10+" }
             ].map((stat, i) => (
               <div key={i} className="bg-[#96430f] p-6 rounded-2xl text-center">
-                <p className="text-3xl font-spicy text-[#fff] font-bold mb-2">{stat.value}</p>
-                <p className="font-spicy text-[#fff]">{stat.label}</p>
+                <p className="text-sm xl:text-3xl break-all font-spicy text-[#fff] font-bold mb-2">{stat.value}</p>
+                <p className="text-sm xl:text-3xl font-spicy text-[#fff]">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -323,12 +327,12 @@ const About = () => (
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative h-[600px]"
+          className="relative h-[300px] sm:h-[600px]"
         >
           <motion.img
             src="/lovable-uploads/about1.png"
             alt="About Image 1"
-            className="absolute w-full h-full  rounded-2xl transform -rotate-12 top-0 left-0 z-20"
+            className="absolute h-96 w-96 sm:w-full sm:h-full  rounded-2xl transform -rotate-12 top-0 left-0 z-20"
             initial={{ scale: 0.8 }}
             whileInView={{ scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
