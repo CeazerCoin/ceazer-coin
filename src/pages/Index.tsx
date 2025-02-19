@@ -120,7 +120,7 @@ const Hero = () => (
 
 const MarqueeText = () => (
   <div className="bg-[#96430f] py-4 overflow-hidden whitespace-nowrap">
-    <ScrollableCoinData/>
+    <ScrollableCoinData />
   </div>
 );
 
@@ -316,10 +316,11 @@ const About = () => (
               { label: "Treats Distributed", value: "10M+" },
               { label: "Memes Minted", value: "10+" }
             ].map((stat, i) => (
-              <div key={i} className="bg-[#96430f] p-6 rounded-2xl text-center">
+              <div key={i} className="bg-[#96430f] flex flex-col items-center justify-center p-6 rounded-2xl text-center">
                 <p className="text-sm xl:text-3xl break-all font-spicy text-[#fff] font-bold mb-2">{stat.value}</p>
                 <p className="text-sm xl:text-3xl font-spicy text-[#fff]">{stat.label}</p>
               </div>
+
             ))}
           </div>
         </motion.div>
