@@ -163,7 +163,7 @@ const Tokenomics = () => {
         {/* Tokenomics Grid */}
         <div className="grid md:grid-cols-4 gap-8">
           {[
-            { label: "Total Supply", value: "1,000,000,000" },
+            { label: "Total Supply", value: "1 Billion" },
             { label: "Team Allocation", value: "10%" },
             { label: "Marketing", value: "15%" },
             { label: "Community", value: "75%" },
@@ -312,7 +312,7 @@ const About = () => (
           <div className="grid grid-cols-2 gap-4">
             {[
               { label: "Community Members", value: "100+" },
-              { label: "Total Supply", value: "1,000,000,000" },
+              { label: "Total Supply", value: "1 Billion" },
               { label: "Treats Distributed", value: "10M+" },
               { label: "Memes Minted", value: "10+" }
             ].map((stat, i) => (
