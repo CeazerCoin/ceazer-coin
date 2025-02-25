@@ -4,6 +4,7 @@ import { Twitter, MessageCircle, MessageSquare, Globe } from "lucide-react";
 import { useState } from "react";
 import { Clipboard, ClipboardCheck } from "lucide-react";
 import ScrollableCoinData from "@/components/ScrollDexPrices";
+import ScrollableDexMarkets from "@/components/ScrollMarkets";
 
 
 const Navigation = () => {
@@ -124,6 +125,11 @@ const MarqueeText = () => (
   </div>
 );
 
+const AvailableDex = () => (
+  <div className="bg-[#96430f] py-4 overflow-hidden whitespace-nowrap">
+    <ScrollableDexMarkets/>
+  </div>
+);
 
 
 
@@ -442,7 +448,7 @@ const Footer = () => (
           </h3>
           <div className="space-y-4">
             <motion.a
-              href="#"
+              href="https://x.com/Ceazercoin"
               className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
               whileHover={{ scale: 1.02 }}
             >
@@ -452,23 +458,13 @@ const Footer = () => (
               </div>
             </motion.a>
             <motion.a
-              href="#"
+              href="https://t.me/CeazerCoin"
               className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
               whileHover={{ scale: 1.02 }}
             >
               <div className="flex items-center gap-3">
                 <MessageCircle className="w-5 h-5" />
                 <span>Join Telegram</span>
-              </div>
-            </motion.a>
-            <motion.a
-              href="#"
-              className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className="flex items-center gap-3">
-                <MessageSquare className="w-5 h-5" />
-                <span>Join Discord</span>
               </div>
             </motion.a>
           </div>
@@ -508,6 +504,7 @@ const Index = () => {
       <Hero />
       <MarqueeText />
       <About />
+      <AvailableDex />
       <Tokenomics />
       <Community />
       <Footer />
