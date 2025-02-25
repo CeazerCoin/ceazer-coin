@@ -25,6 +25,7 @@ const Navigation = () => {
         {/* Desktop and larger screens */}
         <div className="hidden lg:flex items-center gap-8 text-white">
           <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+          <a href="#htb" className="hover:opacity-80 transition-opacity">How To Buy</a>
           <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
           <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
         </div>
@@ -50,6 +51,7 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden bg-[#96430f] z-999 backdrop-blur-sm rounded-md  px-6 py-3 flex flex-col items-center gap-4 text-white">
           <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+          <a href="#htb" className="hover:opacity-80 transition-opacity">How To Buy</a>
           <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
           <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
           <a href="#community">
@@ -63,6 +65,7 @@ const Navigation = () => {
         <div className="lg:hidden absolute top-16 left-[32rem] w-full bg-[#96430f] backdrop-blur-sm rounded-md px-6 py-3 flex flex-col items-center gap-4 text-white 
     md:w-[250px] md:right-4 md:top-20 md:rounded-lg md:p-4">
           <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+          <a href="#htb" className="hover:opacity-80 transition-opacity">How To Buy</a>
           <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
           <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
           <a href="#community">
@@ -111,6 +114,50 @@ const Hero = () => (
       >
         <img
           src="/lovable-uploads/HOME.png"
+          alt="Cute Corgi"
+          className="max-w-full h-auto"
+        />
+      </motion.div>
+    </div>
+  </div>
+);
+
+const Howtobuy = () => (
+  <div id="htb" className="pt-18 pb-6 mt-10 sm:mt-20 sm:m-20 px-6 relative overflow-hidden">
+
+
+    <div className="max-w-7xl mx-1 sm:mx-auto grid md:grid-cols-2 gap-12 items-center relative">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h1 className="text-5xl lg:text-6xl font-spicy font-black text-black mb-6 leading-tight flex flex-wrap items-center">
+          <span>How To Buy $CZR</span>
+        </h1>
+
+        <div className="text-lg text-gray-700 mb-8 max-w-lg">
+        1. Have or create a Phantom wallet
+        </div>
+        <div className="text-lg text-gray-700 mb-8 max-w-lg">
+        2. Buy SOLANA and send it your wallet
+        </div>
+        <div className="text-lg text-gray-700 mb-8 max-w-lg">
+        3. Connect it to Raydium or Jupiter
+        </div>
+        <div className="text-lg text-gray-700 mb-8 max-w-lg">
+        4. Swap SOLANA for $CZR
+        </div>
+
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="animate-float"
+      >
+        <img
+          src="/lovable-uploads/tokenomics1.png"
           alt="Cute Corgi"
           className="max-w-full h-auto"
         />
@@ -423,14 +470,15 @@ const Footer = () => (
           </h3>
           <ul className="space-y-4">
             {[
-              { text: 'Home' },
-              { text: 'About' },
-              { text: 'Tokenomics' },
+              { text: 'Home', href : "#home"},
+              { text: 'How To Buy', href : '#htb'},
+              { text: 'About', href : "#about" },
+              { text: 'Tokenomics', href : "#tokenomics"},
 
             ].map((item) => (
               <li key={item.text}>
                 <a
-                  href={`#${item.text.toLocaleLowerCase()}`}
+                  href={item.href}
                   className="text-white hover:text-white flex items-center gap-2 group"
                 >
 
@@ -503,8 +551,9 @@ const Index = () => {
       <Navigation />
       <Hero />
       <MarqueeText />
-      <About />
+      <Howtobuy/>
       <AvailableDex />
+      <About />
       <Tokenomics />
       <Community />
       <Footer />
