@@ -101,7 +101,11 @@ const Hero = () => (
         </p>
         <div className="flex flex-row items-center gap-4">
           <button className="bg-[#96430f] px-8 py-5 rounded-[2rem] bg-contain bg-no-repeat flex items-center justify-center text-white font-bold">
-            <span className="font-spicy">Buy Token <span className="text-white">🐾</span></span>
+            <a href="https://raydium.io/swap/?inputMint=sol&outputMint=8KDMkrHUjDG5dwjs2CrnNQy65DkZS7v186YQKMAxZD97" target="_blank" rel="noopener noreferrer">
+              <span className="font-spicy">
+                Buy Token <span className="text-white">🐾</span>
+              </span>
+            </a>
           </button>
         </div>
 
@@ -137,16 +141,16 @@ const Howtobuy = () => (
         </h1>
 
         <div className="text-lg text-gray-700 mb-8 max-w-lg">
-        1. Have or create a Phantom wallet
+          1. Have or create a Phantom wallet
         </div>
         <div className="text-lg text-gray-700 mb-8 max-w-lg">
-        2. Buy SOLANA and send it your wallet
+          2. Buy SOLANA and send it your wallet
         </div>
         <div className="text-lg text-gray-700 mb-8 max-w-lg">
-        3. Connect it to Raydium or Jupiter
+          3. Connect it to Raydium or Jupiter
         </div>
         <div className="text-lg text-gray-700 mb-8 max-w-lg">
-        4. Swap SOLANA for $CZR
+          4. Swap SOLANA for $CZR
         </div>
 
       </motion.div>
@@ -174,7 +178,7 @@ const MarqueeText = () => (
 
 const AvailableDex = () => (
   <div className="bg-[#96430f] py-4 overflow-hidden whitespace-nowrap">
-    <ScrollableDexMarkets/>
+    <ScrollableDexMarkets />
   </div>
 );
 
@@ -309,14 +313,19 @@ const Community = () => (
           <p className="text-gray-600 mb-6">
             Join our vibrant community of meme enthusiasts, traders, and crypto lovers. Together, we're building the future of meme coins in a fun and happy way.
           </p>
+          <motion.a
+              href="https://t.me/CeazerCoin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.02 }}
+            >
           <div className="flex gap-4">
-            <button className="bone-button ">
-              <span className="text-[#fff] font-spicy">Join Discord</span>
-            </button>
             <button className="bone-button">
               <span className="text-[#fff] font-spicy">Join Telegram</span>
             </button>
           </div>
+          </motion.a>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -470,10 +479,10 @@ const Footer = () => (
           </h3>
           <ul className="space-y-4">
             {[
-              { text: 'Home', href : "#home"},
-              { text: 'How To Buy', href : '#htb'},
-              { text: 'About', href : "#about" },
-              { text: 'Tokenomics', href : "#tokenomics"},
+              { text: 'Home', href: "#home" },
+              { text: 'How To Buy', href: '#htb' },
+              { text: 'About', href: "#about" },
+              { text: 'Tokenomics', href: "#tokenomics" },
 
             ].map((item) => (
               <li key={item.text}>
@@ -497,6 +506,8 @@ const Footer = () => (
           <div className="space-y-4">
             <motion.a
               href="https://x.com/Ceazercoin"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
               whileHover={{ scale: 1.02 }}
             >
@@ -507,6 +518,8 @@ const Footer = () => (
             </motion.a>
             <motion.a
               href="https://t.me/CeazerCoin"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
               whileHover={{ scale: 1.02 }}
             >
@@ -551,7 +564,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       <MarqueeText />
-      <Howtobuy/>
+      <Howtobuy />
       <AvailableDex />
       <About />
       <Tokenomics />
