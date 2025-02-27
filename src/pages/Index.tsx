@@ -5,39 +5,61 @@ import { useState } from "react";
 import { Clipboard, ClipboardCheck } from "lucide-react";
 import ScrollableCoinData from "@/components/ScrollDexPrices";
 import ScrollableDexMarkets from "@/components/ScrollMarkets";
-
+import { Link as ScrollLink } from "react-scroll"; // Import smooth scroll
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const offsetValue = -100; // Adjust this value to land slightly above the section title
+
+  const menuItems = [
+    { id: "home", label: "Home" },
+    { id: "htb", label: "How To Buy" },
+    { id: "about", label: "About Us" },
+    { id: "tokenomics", label: "Tokenomics" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
       <div className="max-w-7xl mx-auto bg-[#96430f] backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-14 h-14  sm:pl-[4.5rem] rounded-full flex items-center justify-center">
+          <div className="w-14 h-14 sm:pl-[4.5rem] rounded-full flex items-center justify-center">
             <span className="text-[#AE673B] flex flex-row text-2xl font-bold">
               <img className="w-14 h-14" src="/lovable-uploads/ceazer_logo.png" alt="Logo" />
-              <span className=" text-white text-lg sm:text-4xl ml-1 mt-4 sm:mt-[0.50rem]">Ceazer</span>
+              <span className="text-white text-lg sm:text-4xl ml-1 mt-4 sm:mt-[0.50rem]">Ceazer</span>
             </span>
           </div>
         </div>
 
-        {/* Desktop and larger screens */}
-        <div className="hidden lg:flex items-center gap-8 text-white">
-          <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
-          <a href="#htb" className="hover:opacity-80 transition-opacity">How To Buy</a>
-          <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
-          <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex ml-[170px] items-center gap-8 text-white">
+          {menuItems.map((item) => (
+            <ScrollLink
+              key={item.id}
+              to={item.id}
+              smooth={true}
+              offset={offsetValue}
+              duration={500}
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              {item.label}
+            </ScrollLink>
+          ))}
         </div>
 
         {/* Get Started Button */}
-        <a className="hidden lg:flex" href="#community">
+        <ScrollLink
+          to="community"
+          smooth={true}
+          offset={offsetValue}
+          duration={500}
+          className="hidden lg:flex"
+        >
           <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
             Get Started
           </button>
-        </a>
+        </ScrollLink>
 
-        {/* Hamburger Icon for Mobile */}
+        {/* Mobile Menu Toggle */}
         <div className="lg:hidden flex items-center" onClick={() => setIsOpen(!isOpen)}>
           <button className="text-white">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -49,38 +71,25 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#96430f] z-999 backdrop-blur-sm rounded-md  px-6 py-3 flex flex-col items-center gap-4 text-white">
-          <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
-          <a href="#htb" className="hover:opacity-80 transition-opacity">How To Buy</a>
-          <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
-          <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
-          <a href="#community">
-            <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
-              Get Started
-            </button>
-          </a>
+        <div className="md:hidden bg-[#96430f] z-999 backdrop-blur-sm rounded-md px-6 py-3 flex flex-col items-center gap-4 text-white">
+          {menuItems.map((item) => (
+            <ScrollLink
+              key={item.id}
+              to={item.id}
+              smooth={true}
+              offset={offsetValue}
+              duration={500}
+              className="hover:opacity-80 transition-opacity cursor-pointer"
+              onClick={() => setIsOpen(false)} // Close menu on click
+            >
+              {item.label}
+            </ScrollLink>
+          ))}
         </div>
       )}
-      {isOpen && (
-        <div className="lg:hidden absolute top-16 left-[32rem] w-full bg-[#96430f] backdrop-blur-sm rounded-md px-6 py-3 flex flex-col items-center gap-4 text-white 
-    md:w-[250px] md:right-4 md:top-20 md:rounded-lg md:p-4">
-          <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
-          <a href="#htb" className="hover:opacity-80 transition-opacity">How To Buy</a>
-          <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
-          <a href="#tokenomics" className="hover:opacity-80 transition-opacity">Tokenomics</a>
-          <a href="#community">
-            <button className="bg-[#f4d03f] text-black px-6 py-2 rounded-full font-bold hover:bg-[#f1c40f] transition-colors">
-              Get Started
-            </button>
-          </a>
-        </div>
-      )}
-
     </nav>
   );
 };
-
-
 
 const Hero = () => (
   <div id="home" className="pt-24 pb-12 mt-10 sm:mt-20 sm:m-20 px-6 relative overflow-hidden">
@@ -182,9 +191,6 @@ const AvailableDex = () => (
   </div>
 );
 
-
-
-
 const Tokenomics = () => {
   const [copied, setCopied] = useState(false);
   const tokenAddress = "8KDMkrHUjDG5dwjs2CrnNQy65DkZS7v186YQKMAxZD97";
@@ -196,9 +202,9 @@ const Tokenomics = () => {
   };
 
   return (
-    <section id="tokenomics" className="py-24 px-6 bg-secondary/30">
+    <section id="tokenomics" className="py-12 px-6 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl flex flex-wrap font-spicy font-bold text-center mb-16">Tokenomics</h2>
+        <h2 className="text-5xl font-spicy font-bold text-center mb-10">Tokenomics</h2>
 
         {/* Token Mint Address Section with Copy Button */}
         <motion.div
@@ -243,7 +249,7 @@ const Tokenomics = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="hidden sm:flex my-0 pt-20 animate-float"
+          className="hidden sm:flex my-0 pt-10 animate-float"
         >
           <img src={`/lovable-uploads/staking.png`} alt="Cute Corgi" />
         </motion.div>
@@ -253,50 +259,6 @@ const Tokenomics = () => {
   );
 };
 
-
-
-{/*
-const History = () => (
-  <section className="py-24 px-6 bg-white">
-    <div className="max-w-7xl mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-16">Our Journey</h2>
-      <div className="space-y-12">
-        {[
-          {
-            year: "2024 Q1",
-            title: "Project Launch",
-            description: "Initial concept development and community building"
-          },
-          {
-            year: "2024 Q2",
-            title: "Platform Development",
-            description: "Smart contract deployment and security audits"
-          },
-          {
-            year: "2024 Q3",
-            title: "Market Expansion",
-            description: "Major exchange listings and partnerships"
-          }
-        ].map((milestone, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col md:flex-row gap-8 items-center"
-          >
-            <div className="md:w-1/4 text-2xl font-bold text-primary">{milestone.year}</div>
-            <div className="md:w-3/4">
-              <h3 className="text-xl font-bold mb-2">{milestone.title}</h3>
-              <p className="text-gray-600">{milestone.description}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-*/}
 const Community = () => (
   <section id="community" className="py-24 px-6 relative overflow-hidden">
 
@@ -355,7 +317,7 @@ const Community = () => (
 );
 
 const About = () => (
-  <section id="about" className=" py-24 px-6 bg-[#F39C01] relative overflow-hidden">
+  <section id="about" className=" py-12 px-6 bg-[#F39C01] relative overflow-hidden">
     <div className="max-w-7xl mx-auto relative">
       <h1 className="text-5xl font-bold text-white font-spicy  text-center mb-10">About Us</h1>
       <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -375,8 +337,6 @@ const About = () => (
             {[
               { label: "Community Members", value: "100+" },
               { label: "Total Supply", value: "1 Billion" },
-              { label: "Treats Distributed", value: "10M+" },
-              { label: "Memes Minted", value: "10+" }
             ].map((stat, i) => (
               <div key={i} className="bg-[#96430f] flex flex-col items-center justify-center p-6 rounded-2xl text-center">
                 <p className="text-sm xl:text-3xl break-all font-spicy text-[#fff] font-bold mb-2">{stat.value}</p>
@@ -409,6 +369,49 @@ const About = () => (
 );
 
 {/*
+const History = () => (
+  <section className="py-24 px-6 bg-white">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-4xl font-bold text-center mb-16">Our Journey</h2>
+      <div className="space-y-12">
+        {[
+          {
+            year: "2024 Q1",
+            title: "Project Launch",
+            description: "Initial concept development and community building"
+          },
+          {
+            year: "2024 Q2",
+            title: "Platform Development",
+            description: "Smart contract deployment and security audits"
+          },
+          {
+            year: "2024 Q3",
+            title: "Market Expansion",
+            description: "Major exchange listings and partnerships"
+          }
+        ].map((milestone, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col md:flex-row gap-8 items-center"
+          >
+            <div className="md:w-1/4 text-2xl font-bold text-primary">{milestone.year}</div>
+            <div className="md:w-3/4">
+              <h3 className="text-xl font-bold mb-2">{milestone.title}</h3>
+              <p className="text-gray-600">{milestone.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+*/}
+
+{/*
 const SocialLinks = () => (
   <section className="py-12 px-6 bg-primary">
     <div className="max-w-7xl mx-auto">
@@ -436,6 +439,7 @@ const SocialLinks = () => (
   </section>
 );
 */}
+
 const Footer = () => (
   <footer className="bg-[#96430f]  text-white relative overflow-hidden">
     <div className="absolute top-0 left-0 right-0 h-16 bg-[#ba6530] overflow-hidden">
